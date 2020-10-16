@@ -73,7 +73,7 @@ class HomeTableViewController: UITableViewController {
     
     // This functions sets the height of your rows. You can play around with the value before trying dynamic sizing in another release if you want.
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 100
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
