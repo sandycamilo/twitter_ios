@@ -8,9 +8,9 @@ This is a basic twitter app to view, compose, favorite, and retweet tweets.
 
 The following **required** functionality is completed:
 
-- [ ] User can compose a tweet. (4pts)
-- [ ] User can favorite a tweet. (4pts)
-- [ ] User can retweet a tweet. (2pts)
+- [ x] User can compose a tweet. (4pts)
+- [ x] User can favorite a tweet. (4pts)
+- [ x] User can retweet a tweet. (2pts)
 
 The following **bonus** features are implemented:
 
