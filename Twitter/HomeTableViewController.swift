@@ -8,30 +8,34 @@
 
 import UIKit
 
-class HomeTableViewController: UITableViewController {
-    
+class HomeTableViewController: UITableViewController, LoadTweetsDelegate {
     
     var tweetArray = [NSDictionary]()
     var numberOfTweet: Int!
     
     let refresher = UIRefreshControl()
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        loadTweets()
         numberOfTweet = 20
-        refresher.addTarget(self, action: #selector(loadTweets), for: .valueChanged)
+        refresher.addTarget(self, action: #selector(loadTweetTable), for: .valueChanged)
         self.tableView.refreshControl = refresher
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 150
     }
     
+
     override func viewDidAppear (_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.loadTweets()
+        self.loadTweetTable()
     }
     
-    @objc func loadTweets(){
+    
+    
+    @objc func loadTweetTable(){
         numberOfTweet = 20
         let myUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         let myParams = ["count": numberOfTweet]
@@ -120,4 +124,24 @@ class HomeTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return tweetArray.count
     }
+    
+    // MARK Load Tweets delegate
+    func reloadAllTweets() {
+        loadTweetTable()
+    }
+    
+    // MARK Navigation
+    
+    
+    @IBAction func composeTweet(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "NewTweetViewController") as! TweetViewController
+        vc.delegate = self
+        let nav = storyboard.instantiateViewController(withIdentifier: "NewTweetNavController") as! UINavigationController
+        nav.viewControllers = [vc]
+        
+        self.present(nav, animated: true)
+        
+    }
+    
 }
